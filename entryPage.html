@@ -35,7 +35,7 @@
             z-index: 1; 
             font-size: 3rem; 
             color: white;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; }
 
         .text:after {
             content: '';
@@ -79,7 +79,7 @@
         }
         .play-button:hover {
             color: #fff;
-            background-color: #1A1A1A;
+            background-color: #118638;
             box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
             transform: translateY(-2px);
         }
@@ -87,17 +87,21 @@
             box-shadow: none;
             transform: translateY(0);
         }
-        .madeby{
-            position: absolute;
-            top: 70%; 
-            left: 44%;
-            transform: translate(-50%, -50%);
-            z-index: 1; 
-            font-size: 1rem;
-            color: whitesmoke;
-            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif; 
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); 
-        }
+
+
+.copyright {
+    font-size: 14px;
+  }
+
+  footer {
+    background-color: rgba(51, 51, 51, 0.1);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
     
     </style>
 </head>
@@ -110,14 +114,16 @@
 
     <button class="play-button" onclick="startGame()">Play Game</button>
 
-    <div class="madeby">
-    <p>MADE BY<h3> Arian Ndrecaj</h3> AND <h3> Erion Heqimi</h3></p>
-    </div>
 
     <!-- <audio controls id="sound">
         <source src="sound.mp3" type="audio/mpeg">
     </audio> -->
     
+    <footer>
+        <p class="copyright">© 2024 Puzzle Game made by Erion Heqimi, Arian Ndrecaj. All rights reserved.</p>
+      </footer>
+
+
 
     <script>
         function startGame() {

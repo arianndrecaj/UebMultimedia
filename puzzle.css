@@ -1,30 +1,30 @@
 html {
-    background: radial-gradient(circle, #FF8961, #FFFB89, #74BDCB, #0E42C4) fixed;
-  }
-  
-  h1 {
-   text-align: center;
-   font-size: 4rem;
-  }
-  
-  #tiles {
-   width: 400px;
-   margin: 0 auto;
-   position: relative;
-   background-color: white;
-   padding: 8px;
-   border-radius: 0.5rem;
-  }
-  
-  .selected {
-   background-color: #FFF;
-   border: none;
-   color: white;
-  }
-  
-  .btn {
-   font-size: 24px;
-   height: 80px;
-   width: 25%;
-   cursor: pointer;
-  }
+  background: radial-gradient(circle, #FF8961, #FFFB89, #74BDCB, #0E42C4) fixed;
+}
+
+h1 {
+ text-align: center;
+ font-size: 4rem;
+}
+
+#tiles {
+ width: 400px;
+ margin: 0 auto;
+ position: relative;
+ background-color: white;
+ padding: 8px;
+ border-radius: 0.5rem;
+}
+
+.selected {
+ background-color: #FFF;
+ border: none;
+ color: white;
+}
+
+.btn {
+ font-size: 24px;
+ height: 80px;
+ width: 25%;
+ cursor: pointer;
+}

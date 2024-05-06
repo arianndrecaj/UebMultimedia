@@ -7,38 +7,38 @@
     <link rel='stylesheet' type='text/css' media='screen' href='puzzle.css'>
 
     <style>
-      html {
+html {
     background: radial-gradient(circle, #FF8961, #FFFB89, #74BDCB, #0E42C4) fixed;
 }
-      
-        h1 {
-            text-align: center;
-            font-size: 4rem;
-        }
-      
-        #tiles {
-            width: 400px;
-            margin: 0 auto;
-            position: relative;
-            background-color: white;
-            padding: 8px;
-            border-radius: 0.5rem;
-        }
-      
-        .selected {
-            background-color: #FFF;
-            border: none;
-            color: white;
-        }
-      
-        .btn {
-            font-size: 24px;
-            height: 80px;
-            width: 25%;
-            cursor: pointer;
-        }
-    
-        .play-button {
+
+h1 {
+    text-align: center;
+    font-size: 4rem;
+}
+
+#tiles {
+    width: 480px; /* Adjusted to fit a 6x6 grid */
+    margin: 0 auto;
+    position: relative;
+    background-color: white;
+    padding: 8px;
+    border-radius: 0.5rem;
+}
+
+.selected {
+    background-color: #FFF;
+    border: none;
+    color: white;
+}
+
+.btn {
+    font-size: 24px;
+    height: 80px; /* Adjusted to fit a 6x6 grid */
+    width: 16.666%; /* Adjusted to fit a 6x6 grid */
+    cursor: pointer;
+}
+
+.play-button {
             appearance: none;
             background-color: rgb(180, 180, 180);
             border: 2px solid #1A1A1A;
@@ -83,7 +83,7 @@
         .container{
             display: flex;
             flex-direction: column;
-            gap: 90px;
+            gap: 10px;
             align-items:center ;
 
         }
@@ -100,8 +100,6 @@
     bottom: 0;
     width: 100%;
   }
-  
-        
 
     </style>
 </head>
@@ -117,8 +115,7 @@
           </footer>
     
     
-    
+        <script src="lvl4.js" type="text/javascript"></script>
 
-    <script src="puzzle.js" type="text/javascript"></script>
 </body>
 </html>

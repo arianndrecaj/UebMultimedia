@@ -5,30 +5,30 @@
     <title>Choose Level</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+       
             text-align: center;
             background-color: #f2f2f2;
         }
         h1 {
             color: #333;
         }
-        .level-buttons {
+        .buttons {
             display: flex;
             justify-content: center;
             margin-top: 50px;
         }
-        .level-button {
+        .button {
             padding: 15px 30px;
             font-size: 20px;
             margin: 0 10px;
-            background-color: #4CAF50;
+            background-color: #31141579;
             color: white;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s;
         }
-        .level-button:hover {
+        .button:hover {
             background-color: #45a049;
         }
         .puzzle-gif {
@@ -84,20 +84,99 @@
             color: white;
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
-    
+
+
+        .play-button {
+            appearance: none;
+            background-color: rgb(180, 180, 180);
+            border: 2px solid #1A1A1A;
+            border-radius: 15px;
+            box-sizing: border-box;
+            color: rgb(27, 27, 17);
+            cursor: pointer;
+            display: inline-block;
+            font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            font-size: 20px;
+            font-weight: 600;
+            line-height: normal;
+            margin: 0;
+            min-height: 60px;
+            min-width: 0;
+            outline: none;
+            padding: 16px 24px;
+            text-align: center;
+            text-decoration: none;
+            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            width: 20%;
+            will-change: transform;
+            
+        }
+
+        .play-button:disabled {
+            pointer-events: none;
+        }
+        .play-button:hover {
+            color: #fff;
+            background-color: #118638;
+            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+            transform: translateY(-2px);
+        }
+        .play-button:active {
+            box-shadow: none;
+            transform: translateY(0);
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            gap: 120px;
+            align-items:center ;
+
+        }
+    .levelss{
+        padding-bottom: 15%;
+    }
+
+    .copyright {
+    font-size: 14px;
+  }
+
+  footer {
+    background-color: rgba(51, 51, 51, 0.1);
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
     </style>
 </head>
 <body>
+    <div class="container">
+    <div class="levelss">
     <h1 class="choose">Choose a Level</h1>
-    <a href="puzzle.html" class="button" style="vertical-align:middle"><span>Level 1</span></a>
-    <a href="levels/level2.html" class="button" style="vertical-align:middle"><span>Level 2</span></a>
-    <a href="levels/level3.html" class="button" style="vertical-align:middle"><span>Level 3</span></a>
-    <a href="levels/level4.html" class="button" style="vertical-align:middle"><span>Level 4</span></a>
+    <a href="lvl1.html" class="button"
+    style="vertical-align:middle"><span>Level 1</span></a>
+    <a href="puzzle.html" class="button" style="vertical-align:middle"><span>Level 2</span></a>
+    <a href="lvl3.html" class="button" style="vertical-align:middle"><span>Level 3</span></a>
+    <a href="lvl4.html" class="button" style="vertical-align:middle"><span>Level 4</span></a>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/5.3.3/pixi.min.js"></script>
+</div>
 
     <img class="puzzle-gif" src="giphy.gif" alt="Puzzle GIF">
+
+    <button class="play-button" onclick="window.location.href = 'entryPage.html'">Home Page</button>
+</div>
+
+<footer>
+    <p class="copyright">© 2024 Puzzle Game made by Erion Heqimi, Arian Ndrecaj. All rights reserved.</p>
+  </footer>
+
 
     <script>
         function startLevel(level) {
