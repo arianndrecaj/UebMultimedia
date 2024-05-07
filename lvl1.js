@@ -100,15 +100,27 @@ function swap(clicked) {
 }
 
 function checkHasWon() {
+    let allTilesCorrect = true;
     for (let b = 1; b <= numberOfTiles; b++) {
-        currentTile = document.getElementById(`btn${b}`);
-        currentTileIndex = currentTile.getAttribute('index');
-        currentTileValue = currentTile.innerHTML;
-        if (parseInt(currentTileIndex) != parseInt(currentTileValue)) {
-            return false;
+        const currentTile = document.getElementById(`btn${b}`);
+        const currentTileIndex = currentTile.getAttribute('index');
+        const currentTileValue = currentTile.innerHTML;
+        if (parseInt(currentTileIndex) !== parseInt(currentTileValue)) {
+            allTilesCorrect = false;
+            break;
         }
     }
-    return true;
+    if (allTilesCorrect) {
+        const levelCompletedButton = document.createElement('button');
+        levelCompletedButton.innerText = 'Level Completed! Go to Next Level';
+        levelCompletedButton.classList.add('level-completed-button');
+        levelCompletedButton.addEventListener('click', function() {
+            window.location.href = 'puzzle.html'; // Redirect to puzzle.html
+        });
+        buttonContainer.appendChild(levelCompletedButton);
+        return true;
+    }
+    return false;
 }
 
 function setSelected(index) {
@@ -121,3 +133,6 @@ function setSelected(index) {
     newTile.classList.add("selected");
     highlighted = index;
 }
+
+
+

@@ -121,3 +121,27 @@ function setSelected(index) {
     newTile.classList.add("selected");
     highlighted = index;
 }
+
+function checkHasWon() {
+    let allTilesCorrect = true;
+    for (let b = 1; b <= numberOfTiles; b++) {
+        const currentTile = document.getElementById(`btn${b}`);
+        const currentTileIndex = currentTile.getAttribute('index');
+        const currentTileValue = currentTile.innerHTML;
+        if (parseInt(currentTileIndex) !== parseInt(currentTileValue)) {
+            allTilesCorrect = false;
+            break;
+        }
+    }
+    if (allTilesCorrect) {
+        const levelCompletedButton = document.createElement('button');
+        levelCompletedButton.innerText = 'Level Completed! Go to Next Level';
+        levelCompletedButton.classList.add('level-completed-button');
+        levelCompletedButton.addEventListener('click', function() {
+            window.location.href = 'puzzle.html'; // Redirect to puzzle.html
+        });
+        buttonContainer.appendChild(levelCompletedButton);
+        return true;
+    }
+    return false;
+}

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Jaro:opsz@6..72&display=swap" rel="stylesheet">  
     <meta charset='utf-8'>
     <title>Sliding Puzzle</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
@@ -9,6 +12,8 @@
     <style>
       html {
     background: radial-gradient(circle, #FF8961, #FFFB89, #74BDCB, #0E42C4) fixed;
+    overflow: hidden;
+
 }
       
         h1 {
@@ -85,7 +90,7 @@
             flex-direction: column;
             gap: 90px;
             align-items:center ;
-
+            margin-bottom: 20px;
         }
         .copyright {
     font-size: 14px;
@@ -100,14 +105,32 @@
     bottom: 0;
     width: 100%;
   }
-  
-        
+  .level-completed-button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove border */
+    color: white; /* White text color */
+    padding: 15px 32px; /* Padding */
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Display as inline block */
+    font-size: 16px; /* Font size */
+    margin: 4px 2px; /* Margin */
+    cursor: pointer; /* Cursor on hover */
+    border-radius: 10px; /* Rounded corners */
+}
+
+.level-completed-button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+      .text{
+        font-family: "Bebas Neue";
+      }  
 
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Sliding Puzzle</h1>
+        <h1 class="text">Sliding Puzzle LVL.2</h1>
         <div id="tiles"></div>
         <button class="play-button" onclick="window.location.href = 'levelSelect.html'">Go to levels</button>
         </div>
@@ -115,8 +138,6 @@
         <footer>
             <p class="copyright">© 2024 Puzzle Game made by Erion Heqimi, Arian Ndrecaj. All rights reserved.</p>
           </footer>
-    
-    
     
 
     <script src="puzzle.js" type="text/javascript"></script>
