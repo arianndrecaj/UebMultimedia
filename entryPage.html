@@ -121,11 +121,10 @@
 
     <button class="play-button" onclick="startGame()">Play Game</button>
 
+    <audio id="clickSound">
+        <source src="sound.mp4" type="audio/mpeg">
+    </audio>
 
-    <!-- <audio controls id="sound">
-        <source src="sound.mp3" type="audio/mpeg">
-    </audio> -->
-    
     <footer>
         <p class="copyright">© 2024 Puzzle Game made by Erion Heqimi, Arian Ndrecaj. All rights reserved.</p>
       </footer>
@@ -133,10 +132,15 @@
 
 
     <script>
-        function startGame() {
-            window.location.href = "levelSelect.html"; // Redirect to the game page
-        }
+       function startGame() {
+            // Play the click sound
+            document.getElementById('clickSound').play();
 
+            // Redirect to the game page after a short delay to allow sound to play
+            setTimeout(function() {
+                window.location.href = "levelSelect.html";
+            }, 400); // Adjust delay as needed
+        }
     </script>
     
 </body>

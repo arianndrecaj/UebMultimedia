@@ -5,6 +5,8 @@ let shuffled = false;
 
 let buttonContainer = document.getElementById('tiles');
 
+let clickSound = new Audio('sound.mp4');
+
 const RIGHT_ARROW = 39;
 const LEFT_ARROW = 37;
 const UP_ARROW = 38; // Changed to 38 for moving up
@@ -78,6 +80,8 @@ function swap(clicked) {
         return;
     }
 
+    clickSound.play();
+    
     if (clicked == highlighted + 1) {
         if (clicked % size != 1) {
             setSelected(clicked);
