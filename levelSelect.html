@@ -188,6 +188,84 @@
             box-shadow: none;
             transform: translateY(0);
         }
+
+
+
+       
+        .slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 10px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.2s ease;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid #fff;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+            position: relative;
+            z-index: 1;
+            transition: transform 0.2s ease;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid #fff;
+        }
+
+        /* Optional styling */
+        p {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        #playButton {
+            display: none;
+            margin: 0 auto;
+            font-size: 16px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #playButton:hover {
+            background-color: #45a049;
+        }
+        .sliderbutton{
+            padding-top:7% ;
+            display: flex;
+            flex-direction: column;
+        }
     </style>
 </head>
 <body>
@@ -210,7 +288,11 @@
     <audio id="clickSound">
         <source src="sound.mp3" type="audio/mpeg">
     </audio>
-
+<div class="sliderbutton">
+    <input type="range" min="1" max="4" value="1" class="slider" id="mySlider">
+    <p>Level: <span id="sliderValue">Easy</span></p>
+    <button id="playButton">Play</button>
+</div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
         $(document).ready(function(){
@@ -230,6 +312,75 @@
         // Function to toggle dropdown visibility with fade effect
         function toggleDropdown() {
             $('.levelss').fadeToggle('slow');
+        }
+
+
+
+        
+      
+       
+       
+        const slider = document.getElementById("mySlider");
+        const output = document.getElementById("sliderValue");
+        const playButton = document.getElementById("playButton");
+
+        // Display the default slider value
+        output.innerHTML = getLevelWord(slider.value);
+
+        // Update the current slider value and show/hide Play button
+        slider.oninput = function() {
+            output.innerHTML = getLevelWord(this.value);
+            togglePlayButton(this.value);
+        };
+
+        // Function to get descriptive word for level
+        function getLevelWord(level) {
+            switch (level) {
+                case '1':
+                    return 'Easy';
+                case '2':
+                    return 'Medium';
+                case '3':
+                    return 'Hard';
+                case '4':
+                    return 'Extreme';
+                default:
+                    return 'Easy'; // Default to Easy
+            }
+        }
+
+        // Function to show/hide Play button based on level
+        function togglePlayButton(level) {
+            if (level === '1' || level === '2' || level === '3' || level === '4') {
+                playButton.style.display = "block";
+                playButton.onclick = function() {
+                    redirectToLevelPage(level);
+                };
+            } else {
+                playButton.style.display = "none";
+            }
+        }
+
+        // Function to redirect to the corresponding level page
+        function redirectToLevelPage(level) {
+            let page;
+            switch (level) {
+                case '1':
+                    page = 'lvl1.html';
+                    break;
+                case '2':
+                    page = 'puzzle.html';
+                    break;
+                case '3':
+                    page = 'lvl3.html';
+                    break;
+                case '4':
+                    page = 'lvl4.html';
+                    break;
+                default:
+                    page = 'lvl1.html'; // Default to level 1
+            }
+            window.location.href = page;
         }
     </script>
     <footer class="footer">
