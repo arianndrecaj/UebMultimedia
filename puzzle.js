@@ -98,32 +98,9 @@ function swap(clicked) {
 
     if (shuffled) {
         if (checkHasWon()) {
-            alert("Winner!")
+            alert("Winner!");
         }
     }
-}
-
-function checkHasWon() {
-    for (let b = 1; b <= numberOfTiles; b++) {
-        currentTile = document.getElementById(`btn${b}`);
-        currentTileIndex = currentTile.getAttribute('index');
-        currentTileValue = currentTile.innerHTML;
-        if (parseInt(currentTileIndex) != parseInt(currentTileValue)) {
-            return false;
-        }
-    }
-    return true;
-}
-
-function setSelected(index) {
-    currentTile = document.getElementById(`btn${highlighted}`);
-    currentTileText = currentTile.innerHTML;
-    currentTile.classList.remove('selected');
-    newTile = document.getElementById(`btn${index}`);
-    currentTile.innerHTML = newTile.innerHTML;
-    newTile.innerHTML = currentTileText;
-    newTile.classList.add("selected");
-    highlighted = index;
 }
 
 function checkHasWon() {
@@ -138,14 +115,19 @@ function checkHasWon() {
         }
     }
     if (allTilesCorrect) {
-        const levelCompletedButton = document.createElement('button');
-        levelCompletedButton.innerText = 'Level Completed! Go to Next Level';
-        levelCompletedButton.classList.add('level-completed-button');
-        levelCompletedButton.addEventListener('click', function() {
-            window.location.href = 'puzzle.html'; // Redirect to puzzle.html
-        });
-        buttonContainer.appendChild(levelCompletedButton);
+        window.location.href = 'lvl3.html'; // Redirect to lvl3.html
         return true;
     }
     return false;
+}
+
+function setSelected(index) {
+    currentTile = document.getElementById(`btn${highlighted}`);
+    currentTileText = currentTile.innerHTML;
+    currentTile.classList.remove('selected');
+    newTile = document.getElementById(`btn${index}`);
+    currentTile.innerHTML = newTile.innerHTML;
+    newTile.innerHTML = currentTileText;
+    newTile.classList.add("selected");
+    highlighted = index;
 }

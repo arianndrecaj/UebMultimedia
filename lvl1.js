@@ -1,4 +1,4 @@
-let size = 3; // Changed to 3 for a 3x3 puzzle
+let size = 3; // 3x3 puzzle
 let numberOfTiles = size ** 2;
 let highlighted = numberOfTiles;
 let shuffled = false;
@@ -9,8 +9,8 @@ let clickSound = new Audio('sound.mp4');
 
 const RIGHT_ARROW = 39;
 const LEFT_ARROW = 37;
-const UP_ARROW = 38; // Changed to 38 for moving up
-const DOWN_ARROW = 40; // Changed to 40 for moving down
+const UP_ARROW = 38; // Adjusted for moving up
+const DOWN_ARROW = 40; // Adjusted for moving down
 window.onkeydown = function (event) {
     console.log(event.keyCode);
     if (event.keyCode === RIGHT_ARROW) {
@@ -51,8 +51,8 @@ function loadTiles(n) {
 }
 
 function shuffle() {
-    let minShuffles = 100;
-    let totalShuffles = minShuffles + Math.floor(Math.random() * (200 - 100) + 100);
+    let minShuffles = 10; // Reduced number of shuffles
+    let totalShuffles = minShuffles + Math.floor(Math.random() * (20 - 10) + 10); // Reduced range
 
     for (let i = minShuffles; i <= totalShuffles; i++) {
         setTimeout(function timer() {
@@ -71,7 +71,7 @@ function shuffle() {
             if (i >= totalShuffles - 1) {
                 shuffled = true;
             }
-        }, i * 10);
+        }, i * 100); // Increased interval for slower shuffling
     }
 }
 
@@ -81,7 +81,7 @@ function swap(clicked) {
     }
 
     clickSound.play();
-    
+
     if (clicked == highlighted + 1) {
         if (clicked % size != 1) {
             setSelected(clicked);
@@ -98,7 +98,7 @@ function swap(clicked) {
 
     if (shuffled) {
         if (checkHasWon()) {
-            alert("Winner!")
+            alert("Winner!");
         }
     }
 }
@@ -115,13 +115,7 @@ function checkHasWon() {
         }
     }
     if (allTilesCorrect) {
-        const levelCompletedButton = document.createElement('button');
-        levelCompletedButton.innerText = 'Level Completed! Go to Next Level';
-        levelCompletedButton.classList.add('level-completed-button');
-        levelCompletedButton.addEventListener('click', function() {
-            window.location.href = 'puzzle.html'; // Redirect to puzzle.html
-        });
-        buttonContainer.appendChild(levelCompletedButton);
+        window.location.href = 'puzzle.html'; // Redirect to puzzle.html
         return true;
     }
     return false;
@@ -137,6 +131,3 @@ function setSelected(index) {
     newTile.classList.add("selected");
     highlighted = index;
 }
-
-
-

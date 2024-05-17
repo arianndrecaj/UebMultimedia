@@ -19,20 +19,6 @@
             justify-content: center;
             margin-top: 50px;
         }
-        .button {
-            padding: 15px 30px;
-            font-size: 20px;
-            margin: 0 10px;
-            background-color: #31141579;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .button:hover {
-            background-color: #45a049;
-        }
         .puzzle-gif {
             position: fixed;
             top: -0px;
@@ -42,101 +28,11 @@
             object-fit: cover;
             z-index: -1;
         }
-        .button {
-            display: inline-block;
-            border-radius: 4px;
-            background-color: silver;
-            border: none;
-            color: #FFFFFF;
-            text-align: center;
-            font-size: 28px;
-            padding: 20px;
-            width: 200px;
-            transition: all 0.5s;
-            cursor: pointer;
-            margin: 5px;
-            font-family: Georgia, 'Times New Roman', Times, serif;
-        }
-
-        .button span {
-            cursor: pointer;
-            display: inline-block;
-            position: relative;
-            transition: 0.5s;
-        }
-
-        .button span:after {
-            content: '\00bb';
-            position: absolute;
-            opacity: 0;
-            top: 0;
-            right: -20px;
-            transition: 0.5s;
-        }
-
-        .button:hover span {
-            padding-right: 25px;
-        }
-
-        .button:hover span:after {
-            opacity: 1;
-            right: 0;
-        }
-        .choose {
-            color: white;
-            font-family: 'Bebas Neue', sans-serif;       
-        }
-
-        .play-button {
-            appearance: none;
-            background-color: grey;
-            border: 2px solid #1A1A1A;
-            border-radius: 15px;
-            box-sizing: border-box;
-            color: white;
-            cursor: pointer;
-            display: inline-block;
-            font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-            font-size: 20px;
-            font-weight: 600;
-            line-height: normal;
-            margin: 0;
-            min-height: 60px;
-            min-width: 0;
-            outline: none;
-            padding: 16px 24px;
-            text-align: center;
-            text-decoration: none;
-            transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
-            user-select: none;
-            -webkit-user-select: none;
-            touch-action: manipulation;
-            width: 20%;
-            will-change: transform;  
-        }
-
-        .play-button:disabled {
-            pointer-events: none;
-        }
-        .play-button:hover {
-            color: #fff;
-            background-color: #118638;
-            box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
-            transform: translateY(-2px);
-        }
-        .play-button:active {
-            box-shadow: none;
-            transform: translateY(0);
-        }
         .container {
             display: flex;
             flex-direction: column;
             gap: 120px;
             align-items: center ;
-        }
-        .levelss {
-            padding-bottom: 0%;
-            display: none; /* Initially hide dropdown */
         }
         .footer {
             background-color: rgba(51, 51, 51, 0.1);
@@ -161,7 +57,7 @@
             font-weight: 600;
             line-height: normal;
             margin: 0;
-            min-height: 60px;
+            min-height: 80px;
             min-width: 0;
             outline: none;
             padding: 16px 24px;
@@ -173,8 +69,8 @@
             touch-action: manipulation;
             width: 20%;
             will-change: transform;  
-            margin-top: 350px;
-        }
+            margin-top: 150px;
+ }
         .play-button1:disabled {
             pointer-events: none;
         }
@@ -188,10 +84,6 @@
             box-shadow: none;
             transform: translateY(0);
         }
-
-
-
-       
         .slider {
             -webkit-appearance: none;
             appearance: none;
@@ -270,14 +162,6 @@
 </head>
 <body>
     <div class="container">
-        <button class="play-button" onclick="toggleDropdown()">Choose a Level &#8595;</button>
-        <div class="levelss">
-            <h1 class="choose">Choose a Level</h1>
-            <a href="lvl1.html" class="button" onclick="startLevel(1)" style="vertical-align:middle"><span>Level 1</span></a>
-            <a href="puzzle.html" class="button" onclick="startLevel(2)" style="vertical-align:middle"><span>Level 2</span></a>
-            <a href="lvl3.html" class="button" onclick="startLevel(3)" style="vertical-align:middle"><span>Level 3</span></a>
-            <a href="lvl4.html" class="button" onclick="startLevel(4)" style="vertical-align:middle"><span>Level 4</span></a>
-        </div>
         <img class="puzzle-gif" src="giphy.gif" alt="Puzzle GIF">
     </div>
     <br><br><br>
@@ -294,32 +178,7 @@
     <button id="playButton">Play</button>
 </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $('.container').fadeIn('slow');
-        });
-
-        function startLevel(level) {
-            // Play the click sound
-            document.getElementById('clickSound').play();
-
-            // Redirect to the selected level page after a short delay to allow sound to play
-            setTimeout(function() {
-                window.location.href = "level" + level + ".html";
-            }, 300); // Adjust delay as needed
-        }
-
-        // Function to toggle dropdown visibility with fade effect
-        function toggleDropdown() {
-            $('.levelss').fadeToggle('slow');
-        }
-
-
-
-        
-      
-       
-       
+    <script>   
         const slider = document.getElementById("mySlider");
         const output = document.getElementById("sliderValue");
         const playButton = document.getElementById("playButton");
