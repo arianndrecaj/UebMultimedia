@@ -9,8 +9,8 @@
     <title>Sliding Puzzle - Play Game</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='styles.css'>
-
-
+    <script src="https://pixijs.download/release/pixi.min.js"></script>
+   
     <style>
         body {
             margin: 0;
@@ -19,9 +19,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
-        }
+            flex-direction: column; /* Add this line to stack elements vertically */
+        } 
 
-        .video-background {
+        
+
+        /* .video-background {
             position: fixed;
             right: 20;
             bottom: 10;
@@ -30,28 +33,21 @@
             width: auto;
             height: auto;
             z-index: -1;
-        }
+        } */
 
         .text {
             position: absolute;
-            top: 20%; 
+            top: 20%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 1; 
-            font-size: 3rem; 
-            color: white;
+            z-index: 1;
+            font-size: 4rem;
+            color: rgb(0, 0, 0);
             font-family: 'Bebas Neue', sans-serif;
-        }
-        .text:after {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 1px;
-            background-color: white;
-            margin-top: 5px; 
         }
 
         .play-button {
+            position: absolute;
             appearance: none;
             background-color: grey;
             border: 2px solid #1A1A1A;
@@ -60,7 +56,7 @@
             color: rgb(27, 27, 17);
             cursor: pointer;
             display: inline-block;
-            font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+            font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             font-size: 20px;
             font-weight: 600;
             line-height: normal;
@@ -82,40 +78,38 @@
         .play-button:disabled {
             pointer-events: none;
         }
+
         .play-button:hover {
             color: #fff;
             background-color: #118638;
             box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
             transform: translateY(-2px);
         }
+
         .play-button:active {
             box-shadow: none;
             transform: translateY(0);
         }
 
-
-.copyright {
-    font-size: 14px;
-  }
-
-  footer {
-    background-color: rgba(51, 51, 51, 0.1);
-    color: #fff;
-    padding: 10px;
-    text-align: center;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-    
+        .copyright {
+            font-size: 14px;
+        }
+     
+        footer {
+            background-color: rgba(51, 51, 51, 0.1);
+            color: #000000;
+            padding: 10px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-
-
-    <video class="video-background" autoplay muted loop>
+    <!-- <video class="video-background" autoplay muted loop>
         <source src="video.mp4" type="video/mp4">
-    </video>
+    </video> -->
 
     <h1 class="text">PUZZLE GAME</h1>
 
@@ -127,12 +121,10 @@
 
     <footer>
         <p class="copyright">© 2024 Puzzle Game made by Erion Heqimi, Arian Ndrecaj. All rights reserved.</p>
-      </footer>
-
-
+    </footer>
 
     <script>
-       function startGame() {
+        function startGame() {
             // Play the click sound
             document.getElementById('clickSound').play();
 
@@ -142,6 +134,60 @@
             }, 400); // Adjust delay as needed
         }
     </script>
-    
+
+  
+
+
+<script type="module">
+    import { Application, Assets,Sprite } from 'https://cdn.skypack.dev/pixi.js';
+    // Create a new application
+    const app = new Application();
+
+    // Initialize the application
+    await app.init({ background: '#1099bb', resizeTo: window });
+
+    // Append the application canvas to the document body
+    document.body.appendChild(app.canvas);
+
+    // Start loading right away and create a promise
+    const texturePromise = Assets.load('https://pixijs.com/assets/bunny.png');
+
+    // When the promise resolves, we have the texture!
+    texturePromise.then((resolvedTexture) =>
+    {
+        // create a new Sprite from the resolved loaded Texture
+        const bunny = Sprite.from(resolvedTexture);
+
+        // center the sprite's anchor point
+        bunny.anchor.set(0.5);
+
+        // move the sprite to the center of the screen
+        bunny.x = app.screen.width / 2;
+        bunny.y = app.screen.height / 2;
+
+        app.stage.addChild(bunny);
+    });
+
+    // Add the assets to load
+    Assets.add({ alias: 'flowerTop', src: 'https://pixijs.com/assets/flowerTop.png' });
+    Assets.add({ alias: 'eggHead', src: 'https://pixijs.com/assets/eggHead.png' });
+    // Load the assets and get a resolved promise once both are loaded
+    const texturesPromise = Assets.load(['flowerTop', 'eggHead']); // => Promise<{flowerTop: Texture, eggHead: Texture}>
+    // When the promise resolves, we have the texture!
+    texturesPromise.then((textures) =>
+    {
+        // Create a new Sprite from the resolved loaded Textures
+        const flower = Sprite.from(textures.flowerTop);
+        flower.anchor.set(0.5);
+        flower.x = app.screen.width * 0.25;
+        flower.y = app.screen.height / 2;
+        app.stage.addChild(flower);
+        const egg = Sprite.from(textures.eggHead);
+        egg.anchor.set(0.5);
+        egg.x = app.screen.width * 0.75;
+        egg.y = app.screen.height / 2;
+        app.stage.addChild(egg);
+    });
+</script>
 </body>
 </html>
