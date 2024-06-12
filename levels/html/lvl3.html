@@ -23,7 +23,7 @@ h1 {
 }
 
 #tiles {
-    width: 480px; /* Adjusted to fit a 6x6 grid */
+    width: 400px; /* Adjusted to fit a 5x5 grid */
     margin: 0 auto;
     position: relative;
     background-color: white;
@@ -39,8 +39,8 @@ h1 {
 
 .btn {
     font-size: 24px;
-    height: 80px; /* Adjusted to fit a 6x6 grid */
-    width: 16.666%; /* Adjusted to fit a 6x6 grid */
+    height: 80px; /* Adjusted to fit a 5x5 grid */
+    width: 20%; /* Adjusted to fit a 5x5 grid */
     cursor: pointer;
 }
 
@@ -89,7 +89,7 @@ h1 {
         .container{
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 50px;
             align-items:center ;
 
         }
@@ -106,7 +106,6 @@ h1 {
     bottom: 0;
     width: 100%;
   }
-
   .level-completed-button {
     background-color: #4CAF50; /* Green background */
     border: none; /* Remove border */
@@ -130,8 +129,10 @@ h1 {
     </style>
 </head>
 <body>
+ 
+    
     <div class="container">
-        <h1 class="text">Sliding Puzzle LVL.4</h1>
+        <h1 class="text">Sliding Puzzle LVL.3</h1>
         <div id="tiles"></div>
         <button class="play-button" onclick="window.location.href = 'levelSelect.html'">Go to levels</button>
         </div>
@@ -139,7 +140,9 @@ h1 {
             <p class="copyright">© 2024 Puzzle Game made by Erion Heqimi, Arian Ndrecaj. All rights reserved.</p>
           </footer>
     
-        <script src="lvl4.js" type="text/javascript"></script>
+    
+        <script src="js/lvl3.js" type="text/javascript"></script>
+
 
 </body>
 </html>

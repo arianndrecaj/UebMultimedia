@@ -70,7 +70,7 @@
             touch-action: manipulation;
             width: 20%;
             will-change: transform;  
-            margin-top: 150px;
+            margin-top: 10px;
  }
         .play-button1:disabled {
             pointer-events: none;
@@ -158,7 +158,7 @@
             background-color: #45a049;
         }
         .sliderbutton{
-            padding-top:7% ;
+            padding-top:30% ;
             display: flex;
             flex-direction: column;
         }
@@ -166,7 +166,7 @@
 </head>
 <body>
     <div class="container">
-        <img class="puzzle-gif" src="giphy.gif" alt="Puzzle GIF">
+        <img class="puzzle-gif" src="pictures/76YS.gif" alt="Puzzle GIF">
     </div>
     <br><br><br>
     <button class="play-button1" onclick="window.location.href = 'entryPage.html'">Home Page</button>
@@ -174,7 +174,7 @@
 
     <!-- Audio element to play sound -->
     <audio id="clickSound">
-        <source src="sound.mp3" type="audio/mpeg">
+        <source src="sound/video/sound.mp4" type="audio/mpeg">
     </audio>
 <div class="sliderbutton">
     <input type="range" min="1" max="4" value="1" class="slider" id="mySlider">
@@ -229,19 +229,19 @@
             let page;
             switch (level) {
                 case '1':
-                    page = 'lvl1.html';
+                    page = 'levels/html/lvl1.html';
                     break;
                 case '2':
-                    page = 'puzzle.html';
+                    page = 'levels/html/puzzle.html';
                     break;
                 case '3':
-                    page = 'lvl3.html';
+                    page = 'levels/html/lvl3.html';
                     break;
                 case '4':
-                    page = 'lvl4.html';
+                    page = 'levels/html/lvl4.html';
                     break;
                 default:
-                    page = 'lvl1.html'; // Default to level 1
+                    page = 'levels/html/lvl1.html'; // Default to level 1
             }
             window.location.href = page;
         }
