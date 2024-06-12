@@ -158,7 +158,7 @@
             background-color: #45a049;
         }
         .sliderbutton{
-            padding-top:30% ;
+            padding-top:20% ;
             display: flex;
             flex-direction: column;
         }
@@ -166,10 +166,11 @@
 </head>
 <body>
     <div class="container">
-        <img class="puzzle-gif" src="pictures/76YS.gif" alt="Puzzle GIF">
+        <img class="puzzle-gif" src="./pictures/76YS.gif" alt="Puzzle GIF">
+        <img class="puzzle-gif" src="../../pictures/76YS.gif" alt="Puzzle GIF">
     </div>
     <br><br><br>
-    <button class="play-button1" onclick="window.location.href = 'entryPage.html'">Home Page</button>
+    <button class="play-button1" onclick="window.location.href = './entryPage.html'">Home Page</button>
 
 
     <!-- Audio element to play sound -->
@@ -229,19 +230,19 @@
             let page;
             switch (level) {
                 case '1':
-                    page = 'levels/html/lvl1.html';
+                    page = 'lvl1.html';
                     break;
                 case '2':
-                    page = 'levels/html/puzzle.html';
+                    page = 'puzzle.html';
                     break;
                 case '3':
-                    page = 'levels/html/lvl3.html';
+                    page = 'lvl3.html';
                     break;
                 case '4':
-                    page = 'levels/html/lvl4.html';
+                    page = 'lvl4.html';
                     break;
                 default:
-                    page = 'levels/html/lvl1.html'; // Default to level 1
+                    page = 'lvl1.html'; // Default to level 1
             }
             window.location.href = page;
         }

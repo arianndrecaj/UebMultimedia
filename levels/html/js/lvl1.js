@@ -1,133 +1,133 @@
-const landingPage = document.querySelector('.landing-page');
-const startButton = document.querySelector('#startButton');
-const puzzleContainer = document.querySelector('.puzzle-container');
-const moves = document.querySelector('.moves');
-const puzzle = document.querySelector('.puzzle');
-let currentElement = "";
-let movesCount = 0;
-let imagesArr = [];
+let size = 3; // Changed size to 3 for a 3x3 grid
+let numberOfTiles = size ** 2;
+let highlighted = numberOfTiles;
+let shuffled = false;
 
-const isTouchDevice = () => {
-    try {
-        document.createEvent("TouchEvent");
-        return true;
-    } catch (e) {
-        return false;
+let buttonContainer = document.getElementById('tiles');
+
+let clickSound = new Audio('sound.mp4');
+
+const RIGHT_ARROW = 39;
+const LEFT_ARROW = 37;
+const UP_ARROW = 40;
+const DOWN_ARROW = 38;
+window.onkeydown = function (event) {
+    console.log(event.keyCode);
+    if (event.keyCode === RIGHT_ARROW) {
+        swap(highlighted + 1);
+    } else if (event.keyCode === LEFT_ARROW) {
+        swap(highlighted - 1);
+    } else if (event.keyCode === UP_ARROW) {
+        swap(highlighted + size);
+    } else if (event.keyCode === DOWN_ARROW) {
+        swap(highlighted - size);
     }
 };
 
-// Random number for image
-const randomNumber = () => Math.floor(Math.random() * 8) + 1;
+newGame();
 
-// Get row and column value from data-position
-const getCoords = (element) => {
-    const [row, col] = element.getAttribute("data-position").split("_");
-    return [parseInt(row), parseInt(col)];
-};
+function newGame() {
+    loadTiles(size);
+    setTimeout(() => {
+        shuffle();
+    }, 500);
+}
 
-// row1, col1 are image coordinates while row2 and col2 are blank image coordinates
-const checkAdjacent = (row1, row2, col1, col2) => {
-    if (row1 === row2) {
-        // left/right
-        if (col2 === col1 - 1 || col2 === col1 + 1) {
-            return true;
+function loadTiles(n) {
+    for (let b = 1; b <= numberOfTiles; b++) {
+        var newTile = document.createElement('button');
+        newTile.id = `btn${b}`;
+        newTile.setAttribute('index', b);
+        newTile.innerHTML = b;
+        newTile.classList.add('btn');
+        newTile.addEventListener('click', function () {
+            swap(parseInt(this.getAttribute('index')));
+        });
+        buttonContainer.append(newTile);
+    }
+    selectedTileId = 'btn' + highlighted;
+    selectedTile = document.getElementById(selectedTileId);
+    selectedTile.classList.add("selected");
+}
+
+function shuffle() {
+    let minShuffles = 100;
+    let totalShuffles = minShuffles + Math.floor(Math.random() * (200 - 100) + 100);
+
+    for (let i = minShuffles; i <= totalShuffles; i++) {
+        setTimeout(function timer() {
+            let x = Math.floor(Math.random() * 4);
+            let direction = 0;
+            if (x == 0) {
+                direction = highlighted + 1;
+            } else if (x == 1) {
+                direction = highlighted - 1;
+            } else if (x == 2) {
+                direction = highlighted + size;
+            } else if (x == 3) {
+                direction = highlighted - size;
+            }
+            swap(direction);
+            if (i >= totalShuffles - 1) {
+                shuffled = true;
+            }
+        }, i * 10);
+    }
+}
+
+function swap(clicked) {
+    if (clicked < 1 || clicked > numberOfTiles) {
+        return;
+    }
+
+    clickSound.play();
+
+    if (clicked == highlighted + 1) {
+        if (clicked % size != 1) {
+            setSelected(clicked);
         }
-    } else if (col1 === col2) {
-        // up/down
-        if (row2 === row1 - 1 || row2 === row1 + 1) {
-            return true;
+    } else if (clicked == highlighted - 1) {
+        if (clicked % size != 0) {
+            setSelected(clicked);
         }
+    } else if (clicked == highlighted + size) {
+        setSelected(clicked);
+    } else if (clicked == highlighted - size) {
+        setSelected(clicked);
+    }
+
+    if (shuffled) {
+        if (checkHasWon()) {
+            alert("Winner!");
+        }
+    }
+}
+
+function checkHasWon() {
+    let allTilesCorrect = true;
+    for (let b = 1; b <= numberOfTiles; b++) {
+        const currentTile = document.getElementById(`btn${b}`);
+        const currentTileIndex = currentTile.getAttribute('index');
+        const currentTileValue = currentTile.innerHTML;
+        if (parseInt(currentTileIndex) !== parseInt(currentTileValue)) {
+            allTilesCorrect = false;
+            break;
+        }
+    }
+    if (allTilesCorrect) {
+        window.location.href = 'lvl3.html'; // Redirect to lvl3.html
+        return true;
     }
     return false;
-};
+}
 
-const randomImages = () => {
-    while (imagesArr.length < 8) {
-        let randomVal = randomNumber();
-        if (!imagesArr.includes(randomVal)) {
-            imagesArr.push(randomVal);
-        }
-    }
-    imagesArr.push(9);
-};
-
-startButton.addEventListener("click", () => {
-    landingPage.style.display = 'none';
-    puzzleContainer.style.display = 'flex';
-    movesCount = 0;
-    moves.innerText = `Moves: ${movesCount}`;
-    imagesArr = [];
-    randomImages();
-    puzzle.innerHTML = ''; // Clear previous puzzle
-    generateGrid();
-});
-
-// Generate images in grid
-const generateGrid = () => {
-    let count = 0;
-    for (let i = 0; i < 3; i++) {
-        for (let j = 0; j < 3; j++) {
-            let div = document.createElement("div");
-            div.setAttribute("data-position", `${i}_${j}`);
-            div.addEventListener("click", selectImage);
-            div.classList.add("image-container");
-            div.innerHTML = `<img src="images/image_part_00${
-                imagesArr[count]
-            }.jpg" class="image ${
-                imagesArr[count] === 9 ? "target" : ""
-            }" data-index="${imagesArr[count]}"/>`;
-            count += 1;
-            puzzle.appendChild(div);
-        }
-    }
-};
-
-// Switching puzzle
-const selectImage = (e) => {
-    e.preventDefault();
-    // Set currentElement
-    currentElement = e.target;
-    // target (blank image)
-    let targetElement = document.querySelector(".target");
-    let currentParent = currentElement.parentElement;
-    let targetParent = targetElement.parentElement;
-
-    // get row and col values for both elements
-    const [row1, col1] = getCoords(currentParent);
-    const [row2, col2] = getCoords(targetParent);
-
-    if (checkAdjacent(row1, row2, col1, col2)) {
-        // Swap
-        currentElement.remove();
-        targetElement.remove();
-        // Get image index (to be used later for manipulating array)
-        let currentIndex = parseInt(currentElement.getAttribute("data-index"));
-        let targetIndex = parseInt(targetElement.getAttribute("data-index"));
-        // Swap Index
-        currentElement.setAttribute("data-index", targetIndex);
-        targetElement.setAttribute("data-index", currentIndex);
-        // Swap Images
-        currentParent.appendChild(targetElement);
-        targetParent.appendChild(currentElement);
-        // Array swaps
-        let currentArrIndex = imagesArr.indexOf(currentIndex);
-        let targetArrIndex = imagesArr.indexOf(targetIndex);
-        [imagesArr[currentArrIndex], imagesArr[targetArrIndex]] = [
-            imagesArr[targetArrIndex],
-            imagesArr[currentArrIndex],
-        ];
-
-        // Win condition
-        if (imagesArr.join("") === "123456789") {
-            setTimeout(() => {
-                alert(`Congratulations! You solved the puzzle in ${movesCount} moves!`);
-                landingPage.style.display = '';
-                puzzleContainer.style.display = 'none';
-                startButton.innerText = "Restart Game";
-            }, 1000);
-        }
-        // Increment and display move count
-        movesCount += 1;
-        moves.innerText = `Moves: ${movesCount}`;
-    }
-};
+function setSelected(index) {
+    currentTile = document.getElementById(`btn${highlighted}`);
+    currentTileText = currentTile.innerHTML;
+    currentTile.classList.remove('selected');
+    newTile = document.getElementById(`btn${index}`);
+    currentTile.innerHTML = newTile.innerHTML;
+    newTile.innerHTML = currentTileText;
+    newTile.classList.add("selected");
+    highlighted = index;
+}
